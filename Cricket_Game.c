@@ -1,19 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-int win()
+int win(int x,int y)
 {
-    int AI_Score,player_Score,Remaining_Players;
-    if(AI_Score<player_Score)
+    int AI_Score,player_Score,Remaining_Players,TURN;
+    if(AI_Score<player_Score || TURN <=6)
     {
         return 1;
     }
-    else if(Remaining_Players == 10)
+    else if(Remaining_Players == 0 || TURN <=6)
+    {
+        return 0;
+    }
+    else if (AI_Score == player_Score || TURN <=6)
     {
         return 0;
     }
     else
+    {
         return -1;
+    }
 }
 int Score_Board()
 {
