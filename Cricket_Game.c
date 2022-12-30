@@ -2,18 +2,23 @@
 #include <stdlib.h>
 #include <time.h>
 
-int Win_Status(int AI_Score,int player_score)
+int Win_Status(int AI_Score,int player_score,int Remaining_Players,int balls)
 {
-    int AI_Score,player_Score,Remaining_Players,TURN;
-    if(AI_Score<player_Score || TURN <=6)
+    int balls=over;
+    int AI_Score,player_Score,Remaining_Players;
+    if(AI_Score > player_Score)
     {
         return 1;
     }
-    else if(Remaining_Players == 0 || TURN <=6)
+    else if(Remaining_Players == 0)
     {
         return 0;
     }
-    else if (AI_Score == player_Score || TURN <=6)
+    else if (AI_Score == player_Score && over > 6)
+    {
+        return 0;
+    }
+    else if ( over > 6)
     {
         return 0;
     }
@@ -97,7 +102,7 @@ int main()
         }
         TURN++;
         Player_Score_Board(PLAYER_SCORE,TURN);
-        Win_Status(AI_SCORE,PLAYER_SCORE);
+        Win_Status(AI_SCORE,PLAYER_SCORE,Remaining_Player,balls);
     } while (win = -1);
 return 0;
 }
